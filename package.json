@@ -1,0 +1,15 @@
+{
+  "name": "java_script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./002/hw_ciklai.js",
+    "dev2": "nodemon ./002/hw_js_basic_loops.js",
+    "dev3": "nodemon ./003/paskaita.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
