@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./002/hw_ciklai.js",
     "dev2": "nodemon ./002/hw_js_basic_loops.js",
-    "dev3": "nodemon ./003/paskaita.js",
+    "dev3": "nodemon ./003/hw_.js",
+    "dev4": "nodemon ./004/testosteronas.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

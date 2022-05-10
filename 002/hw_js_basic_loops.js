@@ -101,10 +101,11 @@ let k4Suma = 0;
 let count4 = 0;
 let k4Atmesta = 0;
 let k4Lyginis = 0;
-let k4Nelyginis = 0; 
+let k4Nelyginis = 0;
+let fIteracijos = 0; 
 
 
-while ((k4 !== 10) && (k4 !== 11)){
+while ((k4 !== 10) && (k4 !== 11) || (count4 <= 20)){
     k4 = rand(10, 25);              // a)
 
     count4++                        // b)
@@ -121,10 +122,14 @@ while ((k4 !== 10) && (k4 !== 11)){
 
     if (k4 > 18) {                  // c)
         k4Atmesta++;                // d)                         
-        continue;   // prasichekint shita!!!!!!!!!!!!!!!!!!
+        
     } else {
         k4Suma += k4;
     }
+
+    // for (count4 = 0; count4 > 20; count4++){
+    //     fIteracijos++;
+    // }
 
 }
 
@@ -134,7 +139,8 @@ console.log('k4 atmestu skaicius skaicius yra:', k4Atmesta);
 console.log('k4 sugeneruotu nelyginiu skaiciu yra:', k4Nelyginis);
 console.log('k4 sugeneruotu lyginiu skaiciu yra:', k4Lyginis);
 
-// F nepadariau!!!!!
+console.log('Iteraciju skaicius is b dalies lygus:', count4);
+
 
 
 console.log('-----------------------');
@@ -143,22 +149,57 @@ console.log('   9)');
 let k5 = 0;
 let countk5 = 0;
 let countk5b = 0;
-let i = 0;
+let count5Iki3 = 0;
 
 
-
-while (k5 !== 5) {
+while (count5Iki3 < 3) {
     k5 = rand(5, 10);
     countk5++
-   for (i = 0; i < k5; i++ ) {
-       countk5b += i;
+
+    if (k5 === 5) {
+        count5Iki3++;
+    }
+
+   for (let i = 0; i < k5; i++ ) {
+       countk5b++;
        
     //    console.log(countk5b);
     //    console.log('------------------');
    }
 
-    console.log(k5);
+    // console.log(k5);
+
+    // let array = [];
+    // array.push(k5)
+    // console.log(array);
 }
+
+
 
 console.log('Pirmo while iteraciju kiekis', countk5);
 console.log('Antro for iteraciju kiekis', countk5b);
+
+// C NEPADARIAU!!!!!!
+
+
+console.log('-----------------------');
+console.log('   10)');
+
+let kazys = 0;
+let petras = 0;
+
+while ((kazys <= 222) && (petras <= 222)) {
+
+    petras += rand(10, 20);
+    kazys += rand(5, 25);
+}
+
+console.log(`Petras surinko ${petras} tasku
+Kazys surinko ${kazys} tasku`);
+
+if (petras > kazys){
+    console.log('Partija laimejo Petras');
+
+}  else if (petras < kazys){
+    console.log('Partija laimejo Kazys');
+}

@@ -64,3 +64,48 @@ for(let i = 0; i < 10; i++) {
     ${i + 1} ratas`);
     //// su backtick galiu padalinti viena eilute i kelias!!!!
 }
+
+console.log('----------------------');
+
+////    CIKLAS CIKLE   ////
+
+
+for (let i = 0; i < 5; i++) {
+    console.log(`Dabar sukasi didelis ${i + 1} ratas`);
+
+    for (let i2 = 0; i2 < 3; i2++) {
+        console.log(`Dabar sukasi mazas ${i2 + 1} ratas`);
+    
+    }
+
+}
+
+console.log('----------------------');
+
+//// UZDAVINYS: Leksteje gali buti nuo 10 iki 30 kasniu kotleto.
+////            1) Kasnis susikrampo per rand 1....10.
+////            2) Kasnis susikrampo neaisku kaip, tikrinti po kiekvieno kasnio do{while}
+
+
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+    
+}
+
+const kotletoKasniai = rand(10, 30);
+let kotletasSuvalgytasPer = 0;
+
+for (let i = 0; i < kotletoKasniai; i++){
+
+    // const gabaliukasSukramtomas = rand(1, 10);
+    // kotletasSuvalgytasPer += gabaliukasSukramtomas;
+
+    do{
+        kotletasSuvalgytasPer++;
+    } while (rand(0, 4));           // 0 - 20% kad iskris // 4 - 80% kad iskris kitas nei 0
+}
+
+console.log(kotletasSuvalgytasPer);

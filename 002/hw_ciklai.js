@@ -141,3 +141,82 @@ console.log('-----------------------');
 console.log('   13)');
 
 // 13. console.log’e, naudojant ciklą atspausdinti po porą skirtingų atsitiktinių skaičių nuo 0 iki 10 (abu skaičiai vienoje eilutėje). Ciklą kartoti tol, kol neiškris abu vienodi skaičiai;
+
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let skaiciusA = 0;
+let skaiciusB = 0;
+
+do {
+    skaiciusA = rand(0, 10);
+    skaiciusB = rand(0, 10);
+
+    console.log(skaiciusA, skaiciusB);
+} while (skaiciusA !== skaiciusB);
+
+
+console.log('-----------------------');
+console.log('   14)');
+
+// 14. console.log’e, naudojant ciklą atspausdinti po porą skirtingų atsitiktinių skaičių nuo 0 iki 10 (abu skaičiai vienoje eilutėje). Skaičiuoti abiejų skaičių sumas skirtinguose kintamuosiuose (skaičiuoti skaičių stulpelių sumas). Ciklą kartoti tol, kol kiekviena iš sumų bus daugiau nei 100;
+
+let skaiciusC = 0;
+let skaiciusD = 0
+
+do{
+    // if (++skaiciusC > 140 || ++skaiciusD > 140){
+    //     console.log('Avarija');
+    //     break;
+    // }
+
+    skaiciusC += rand(0, 10);
+    skaiciusD += rand(0, 10);
+
+    console.log(skaiciusC, skaiciusD);
+} while (skaiciusC <= 100 || skaiciusD <= 100);
+console.log('Abi sumos daugiau uz 100:', skaiciusC, skaiciusD);
+
+console.log('-----------------------');
+
+let a8 = 0;
+let b8 = 0;
+
+while (a8 <= 100 || b8 <= 100) {
+    a8 += rand(0, 10);
+    b8 += rand(0, 10);
+
+    console.log(a8, b8);
+}
+console.log('abi sumos2 daugiau uz 100:', a8, b8);
+
+
+console.log('-----------------------');
+console.log('   14)');
+
+// 15. console.log’e, naudojant ciklą atspausdinti po porą skirtingų atsitiktinių skaičių nuo 0 iki 10 (abu skaičiai vienoje eilutėje). Ciklą kartoti kol bus sugeneruota po tris arba daugiau nelyginių skaičių  (skaičiai atskiruose stulpeliuose).
+
+
+let a9 = 0;
+let b9 = 0;
+let count9a = 0;
+let count9b = 0;
+
+while (count9a < 3 || count9b < 3) {
+
+    a9 = rand(0, 10);
+    b9 = rand(0, 10);
+
+    if (a9 % 2 !== 0) {
+        count9a++;
+    }
+    if (b9 % 2 !== 0) {
+        count9b++;
+    }
+    console.log(a9, b9);
+
+}
