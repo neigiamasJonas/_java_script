@@ -158,20 +158,16 @@ while (count5Iki3 < 3) {
 
     if (k5 === 5) {
         count5Iki3++;
+    } else {
+        count5Iki3 = 0;
     }
 
    for (let i = 0; i < k5; i++ ) {
        countk5b++;
        
-    //    console.log(countk5b);
-    //    console.log('------------------');
    }
 
-    // console.log(k5);
-
-    // let array = [];
-    // array.push(k5)
-    // console.log(array);
+   console.log(k5);
 }
 
 
@@ -179,7 +175,6 @@ while (count5Iki3 < 3) {
 console.log('Pirmo while iteraciju kiekis', countk5);
 console.log('Antro for iteraciju kiekis', countk5b);
 
-// C NEPADARIAU!!!!!!
 
 
 console.log('-----------------------');
