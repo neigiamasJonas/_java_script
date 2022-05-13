@@ -105,9 +105,10 @@ namasSuKaminu3.animals.cat = 'kitas katinas'
 console.log(namasSuKaminu);
 console.log(namasSuKaminu3);
 
-console.log('------------ Map --------------');
+console.log('------------ MAP --------------');
 
 const map = new Map();
+console.log(map.size);
 
 map.set('murka', 5);
 map.set('rikis', 8);
@@ -121,3 +122,25 @@ console.log(map.has('pukis'));
 
 const masmap = [...map];            // map pavertimas i masyva
 console.log(masmap);
+
+console.log('------------- SETAS --------------');
+
+const se = new Set();
+console.log(se.size);
+
+se.add('cat');
+se.add('dog');
+se.add('cat');
+se.add({t:'cat'});          // kopiju nededa, bet jei idedant objekta nereguoja
+
+se.delete('dog');
+
+console.log(se.has({t:'cat'}))
+
+console.log(se.size);
+console.log(se);
+
+
+const va = [4, 8, 2, 7, 7, 4]
+
+console.log(new Set(va));

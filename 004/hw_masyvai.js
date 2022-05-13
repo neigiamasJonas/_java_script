@@ -216,10 +216,28 @@ console.log('Naujai idetu grynu suma:', gryniRandSuma);
 console.log('---------- 17) ------------');
 // Patikrinti ar ką nors laimėjote. Bilieto numerius dalinkite iš 777 ir jeigu numeris išsidalins be liekanos - jūs laimėjote! Suskaičiuokite, kiek buvo laimingų bilietų.
 
+let laimingiBilietai = 0;
 
+loterijaMasyvas.forEach(k => {
+    if (k % 777 === 0) {
+        laimingiBilietai++;
+        k++;
+        console.log(`${k} bilietas laimingas`);
+    } else {
+        console.log(`Laimingu bilietu nera`);
+    }
+})
 
-
+console.log(`Laimingu bilietu kiekis: ${laimingiBilietai}`);
 
 console.log('---------- 18) ------------');
 //  Sukurkite penktą skyrelį ir į jį sudėkite nuotraukas: ['šuo', 'katė', 'automobilis', 'namas', 'kiemas'] ir jas išrūšiuokite pagal žodžių ilgį taip, kad pirma eitų trumpiausi žodžiai;
 
+const nuotraukuMasyvas = ['šuo', 'katė', 'automobilis', 'namas', 'kiemas'];
+
+nuotraukuMasyvas.sort(function(a, b){return a.length-b.length});
+
+// console.log(nuotraukuMasyvas);
+
+pinigineSuSkyreliais.push(nuotraukuMasyvas);
+console.log(pinigineSuSkyreliais);

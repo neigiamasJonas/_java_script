@@ -8,7 +8,10 @@
     "dev2": "nodemon ./002/hw_js_basic_loops.js",
     "dev3": "nodemon ./003/paskaita.js",
     "dev4": "nodemon ./004/hw_masyvai.js",
+    "dev4a": "nodemon ./004/hw_masyvai_basic.js",
     "dev5": "nodemon ./005/paskaita.js",
+    "dev6": "nodemon ./006/paskaita.js",
+    "dev7": "nodemon ./007/paskaita.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
