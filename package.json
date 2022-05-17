@@ -10,8 +10,9 @@
     "dev4": "nodemon ./004/hw_masyvai.js",
     "dev4a": "nodemon ./004/hw_masyvai_basic.js",
     "dev5": "nodemon ./005/paskaita.js",
-    "dev6": "nodemon ./006/paskaita.js",
-    "dev7": "nodemon ./007/paskaita.js",
+    "dev6": "nodemon ./006/hw_function.js",
+    "dev7": "nodemon ./007/hw-dom.js",
+    "dev8": "nodemon ./008/paskaita.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

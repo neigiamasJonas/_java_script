@@ -291,29 +291,14 @@ console.log(arrayNew4);
 console.log('---------- 8) -----------');
 /////////////////////////////////////////////
 
-// const arrayNew5 = [];
+const arrayNew5 = [];
 
-// arrayNew1.forEach((v, i) => {
+arrayNew1.forEach((v, i) => {
+    arrayNew5[v] = arrayNew2[i];
+})
 
-//     arrayNew5.push(arrayNew2[i]);
-// })
+console.table(arrayNew5);
 
-// console.log(arrayNew5);
-// console.table(arrayNew5);
-
-// arrayNew5.forEach((v, i) => {
-//     for (a in arrayNew5) {
-//         a = arrayNew1[i];
-//     }
-// })
-
-// console.log(arrayNew5);
-
-// function arraymove(arr, fromIndex, toIndex) {
-//     var element = arr[fromIndex];
-//     arr.splice(fromIndex, 1);
-//     arr.splice(toIndex, 0, element);
-// }
 
 console.log('---------- 9) -----------');
 /////////////////////////////////////////////
