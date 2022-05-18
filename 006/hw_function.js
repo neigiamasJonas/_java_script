@@ -118,7 +118,7 @@ console.log(monster);
 
 console.log('----------- 8) ------------');
 
-
+if (monsterSize[i])
 
 
 console.log('----------- 9) ------------');
