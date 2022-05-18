@@ -1,4 +1,4 @@
-function Comp1() {
+function Comp1({skaicius}) {
 const xxx = 22;
     return (
         <>
@@ -9,7 +9,7 @@ const xxx = 22;
                     padding: "20px"
                 }
             }>Comp1</h2>
-            <span>Pirmasis componentas Nr. { xxx > 20 ? 'Daug' : 'Nedaug' } { 10 + 20 }</span>
+            <span>Pirmasis componentas Nr. { xxx > 20 ? 'Daug' : 'Nedaug' } { skaicius + 10 + xxx }</span>
         </>
     );
 }

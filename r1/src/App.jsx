@@ -2,12 +2,16 @@ import './App.css';
 import Comp1 from './components/009/comp1';
 import Hello from "./components/009/hello";
 
+const kaka = 1;
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Hello></Hello>
-        <Comp1/>
+        <Hello spalva='green' bg="yellow"></Hello>
+        <Hello spalva='black' bg="green"></Hello>
+        <Hello spalva='gray' bg="blue"></Hello>
+        <Comp1 skaicius={33 + kaka}/>
       </header>
     </div>
   );
@@ -35,3 +39,9 @@ export default App;
 //     COMPONENT - tai FUNKCIJA kuri grazina HTML.
 //                  a) Funkcijos (komponento) pavadinimas turi prasidedi didziaja raide.
 //                  b) Viena funkcija - vienas failas. Faila vadinsime taip kaip uzsivadina component.
+
+
+//     PROPS - jeigu komponentas yra funkcija, tai PROPS yra funkcijos argumentas.
+//              a) <Hello spalva='green'/> yra propsas
+
+// stringa galima paversti skaiciumi pidejus + zenkla (nes nera taigiamo stringo)
