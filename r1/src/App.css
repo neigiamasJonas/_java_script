@@ -54,3 +54,12 @@
   margin: 7px;
   border-radius: 7px;
 }
+
+.apskritimas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 77px;
+  height: 77px;
+  background-color: white;
+}

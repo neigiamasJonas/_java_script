@@ -1,82 +1,47 @@
+
 import { useState } from 'react';
 import './App.css';
-import randColor from './Functions/randColor.js';
+import rand from './Functions/randNumber';
 
-
-const katinai = ['Pilkis', 'Murkis', 'Rainis'];
 
 function App() {
+/////// 1) ///////
+const [forma, setForma] = useState('40px')
 
-  const [spalva, setSpalva] = useState('yellow');   // pirmas elementas - reiksme, antras - funkcija, kuri keicia reiksme. HOOK'as
+const keiciasi = () => {
+  console.log(forma);
+  setForma(old => old === '40px' ? '0px' : '40px');
+}
 
-  const keistiSpalva = () => {
-    // const naujaSpalva = spalva === 'yellow' ? 'pink' : 'yellow' --- taip daryt galima tada, jeigu aplikacija yra maza, bet siaip nepatartina.
-    // setSpalva(naujaSpalva);
-
-    setSpalva(old => old === 'yellow' ? 'pink' : 'yellow'); // OLD gali buti bet kas.. cia tiesiog funkcija tokia
-
-    console.log(spalva);    // log spalva console iskarto nerodo pink, o rodo yellow. antra kart rodo pink
-  }
-
-  const [skaicius, setSkaicius] = useState(1)
-  const skaiciuotuvas = argumentas => setSkaicius(s => s + argumentas);
-
-  // const mygtukas = () => {
-  //   console.log('As grazus mygtukas');
-  //   return mygtukoBrolis;
-  // }
-
-  // const mygtukoBrolis = () => {
-  //   console.log('Mygtuko brolis');
-  // }
-
-  const beArgumentu = () => {
-    console.log('Be argumentu');
-  }
-
-  const suArgumentu = ka => {
-    console.log('Su argumentu: ' + ka);
-  }
-
-  ///////// LISTAI ////////////
-
-  const [kv, setKv] = useState([]);
-
-  const addKv = () => {
-    setKv(k => [...k, randColor()])
-  }
-
-  const remKv = () => {
-    setKv(k => k.slice(1));
-  }
+/////// 2) ///////
 
 
+const [forma2, setForma2] = useState('40px')
+const [stat, setStat] = useState ('77px')
 
+const keiciasi2 = () => {
+  setForma2(old => old === '40px' ? '0px' : '40px');
+  setStat(old => old === '77px' ? '140px' : '77px')
+}
+
+const [randomSkaicius, setRandomSkaicius] = useState()
+
+const randomaizeris = () => setRandomSkaicius(rand(5,25));
 
 
   return (
     <>
       <div className="App">
         <header className="App-header">
-            <div style={{color: spalva}}>STATE {skaicius}</div>
-            <div className='kvc'>
-              {
-                kv.map((c, i) => <div className="kv" key={i} style={{backgroundColor:c}}>{i}</div>)
-              }
+          <div>Uzdavinys nr:1</div>
+          <div className='apskritimas' style={{borderRadius: forma}}></div>
+          <button onClick={keiciasi}>Change</button>
 
-            </div>
+          <div>Uzdavinys nr:2</div>
+          <div className='apskritimas' style={{borderRadius: forma2, width: stat, color: 'black'}}>{randomSkaicius}</div>
+          <button onClick={keiciasi2}>Change</button>
+          <button onClick={randomaizeris}>Random</button>
 
-            {
-              katinai.map((k, i) => <div key={i}>{k}</div>)
-            }
-            {/* <button onClick={mygtukas()}>Press Me!</button> */}
-            <button onClick={beArgumentu}>Be argumentu</button>
-            <button onClick={() => suArgumentu('Labas')}>Su argumentu</button>
-            <button onClick={keistiSpalva}>Kita spalva</button>
-            <button onClick={() => skaiciuotuvas(1)}>+1</button>      
-            <button onClick={() => skaiciuotuvas(-1)}>-1</button>
-            <button onClick={addKv}>ADD [] kvadratas</button>
-            <button onClick={remKv}>REMOVE [] kvadratas</button>
         </header>
       </div>
     </>
