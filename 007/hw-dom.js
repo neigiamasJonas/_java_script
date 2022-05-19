@@ -142,8 +142,16 @@ console.log('A) ---');
 ///////////////////////
 
 const header1 = document.querySelector('fieldset legend');
-header1.style.color = 'green';
-header1.style.fontSize = '10px';
+
+document.querySelector('#h1-color').addEventListener('click', () => {
+    header1.style.color = 'green';
+})
+
+
+document.querySelector('#h1-font').addEventListener('click', () => {
+    header1.style.fontSize = '10px';;
+})
+
 console.log(header1);
 
 
@@ -163,10 +171,142 @@ console.log('C) ---');
 
 document.querySelector('.prices').addEventListener('click', e => {
     e.target.style.backgroundColor = e.target.style.backgroundColor == 'white' ? 'gray' : 'white';
-    console.log(e.target);
+    console.log(e.target, 'paspaudziamas');
 })
 
 
 console.log('D) ---');
 ///////////////////////
 
+document.querySelector('#contacts').addEventListener('click', e => {
+    e.target.style.color = 'orange';
+})
+
+
+console.log('E) ---');
+///////////////////////
+
+document.querySelector('#contacts u').addEventListener('click', e => {
+    document.querySelector('#contacts').style.fontSize = '20px';
+})
+
+
+console.log('F) ---');
+/////////////////////// nuimti stilius nuo tago su = NULL !!!
+
+document.querySelector('#contacts b').addEventListener('click', e => {
+    document.querySelector('#contacts').style.color = null;
+    document.querySelector('#contacts').style.fontSize = null;
+})
+
+
+console.log('G) ---');
+///////////////////////
+
+document.querySelector('#h1-color-back').addEventListener('click', () => {
+    header1.style.color = null;
+})
+
+document.querySelector('#h1-font-back').addEventListener('click', () => {
+    header1.style.fontSize = null;
+})
+
+
+
+
+
+console.log('------ 4)  Elementų grupių events -----');
+console.log('A) ---');
+///////////////////////
+
+const animalsNot = document.querySelectorAll('.animals .new')
+
+animalsNot.forEach(n => {
+    n.addEventListener('dblclick', e => {
+        e.target.style.color = 'red';
+    })
+})
+
+
+
+
+console.log('B) ---');
+///////////////////////
+
+const animalLi = document.querySelectorAll('ul li')
+console.log(animalLi);
+
+animalLi.forEach(n => {
+    
+    if (!n.classList.contains('like-button')){
+        console.log(n);
+
+        n.addEventListener('click', e => {
+            e.target.style.fontSize = "130%";
+        })
+    }
+})
+
+
+
+console.log('C) ---');
+///////////////////////
+
+
+document.querySelectorAll('.like-button').forEach(n => {
+    n.addEventListener('click', () => {
+        document.querySelectorAll('ul').forEach(b => {
+            b.classList.add('like');
+        })
+    })
+})
+
+
+
+
+console.log('------ 5)  Dinaminis elementų kūrimas (su createElement) -----');
+console.log('A) ---');
+///////////////////////
+
+const prices = document.querySelector('.prices');
+
+let ele = document.createElement('h2');   // pirma reikia susikurti elementa
+
+prices.appendChild(ele)                 // tada su append prideti ta elementa i tevini taga
+console.log(prices);
+
+ele.innerHTML = "Senjorai tik: 1.99 eur";
+ele.classList.add('price-tag');
+
+
+
+console.log('B) ---');
+///////////////////////
+
+let ele2 = document.createElement('h2');
+prices.appendChild(ele2);
+
+ele2.innerHTML = 'Senjorų grupė iki 10: tik 5.99 eur'
+ele2.classList.add('new', 'price-tag')
+ele2.addEventListener('click', e => {
+    e.target.style.color = 'green';
+})
+
+
+
+console.log('C) ---');
+///////////////////////
+
+
+const ulialia = document.querySelectorAll('ul');
+
+const patinka = document.querySelectorAll('.like-button');
+console.log(patinka);
+
+let ele3 = document.createElement('li')
+ele3.innerHTML= 'NEPATINKA';
+console.log(ele3);
+
+patinka.forEach(n => {
+    ulialia.after(ele3, patinka)
+})

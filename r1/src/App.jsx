@@ -1,47 +1,90 @@
+import { useState } from 'react';
 import './App.css';
-import Comp1 from './components/009/comp1';
-import Hello from "./components/009/hello";
+import randColor from './Functions/randColor.js';
 
-const kaka = 1;
+
+const katinai = ['Pilkis', 'Murkis', 'Rainis'];
 
 function App() {
+
+  const [spalva, setSpalva] = useState('yellow');   // pirmas elementas - reiksme, antras - funkcija, kuri keicia reiksme. HOOK'as
+
+  const keistiSpalva = () => {
+    // const naujaSpalva = spalva === 'yellow' ? 'pink' : 'yellow' --- taip daryt galima tada, jeigu aplikacija yra maza, bet siaip nepatartina.
+    // setSpalva(naujaSpalva);
+
+    setSpalva(old => old === 'yellow' ? 'pink' : 'yellow'); // OLD gali buti bet kas.. cia tiesiog funkcija tokia
+
+    console.log(spalva);    // log spalva console iskarto nerodo pink, o rodo yellow. antra kart rodo pink
+  }
+
+  const [skaicius, setSkaicius] = useState(1)
+  const skaiciuotuvas = argumentas => setSkaicius(s => s + argumentas);
+
+  // const mygtukas = () => {
+  //   console.log('As grazus mygtukas');
+  //   return mygtukoBrolis;
+  // }
+
+  // const mygtukoBrolis = () => {
+  //   console.log('Mygtuko brolis');
+  // }
+
+  const beArgumentu = () => {
+    console.log('Be argumentu');
+  }
+
+  const suArgumentu = ka => {
+    console.log('Su argumentu: ' + ka);
+  }
+
+  ///////// LISTAI ////////////
+
+  const [kv, setKv] = useState([]);
+
+  const addKv = () => {
+    setKv(k => [...k, randColor()])
+  }
+
+  const remKv = () => {
+    setKv(k => k.slice(1));
+  }
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Hello spalva='green' bg="yellow"></Hello>
-        <Hello spalva='black' bg="green"></Hello>
-        <Hello spalva='gray' bg="blue"></Hello>
-        <Comp1 skaicius={33 + kaka}/>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <header className="App-header">
+            <div style={{color: spalva}}>STATE {skaicius}</div>
+            <div className='kvc'>
+              {
+                kv.map((c, i) => <div className="kv" key={i} style={{backgroundColor:c}}>{i}</div>)
+              }
+
+            </div>
+
+            {
+              katinai.map((k, i) => <div key={i}>{k}</div>)
+            }
+            {/* <button onClick={mygtukas()}>Press Me!</button> */}
+            <button onClick={beArgumentu}>Be argumentu</button>
+            <button onClick={() => suArgumentu('Labas')}>Su argumentu</button>
+            <button onClick={keistiSpalva}>Kita spalva</button>
+            <button onClick={() => skaiciuotuvas(1)}>+1</button>      
+            <button onClick={() => skaiciuotuvas(-1)}>-1</button>
+            <button onClick={addKv}>ADD [] kvadratas</button>
+            <button onClick={remKv}>REMOVE [] kvadratas</button>
+        </header>
+      </div>
+    </>
   );
 }
 
 export default App;
 
 
-// jsx  - js + html
-// x - xml
-// xml - grieztesne html atmaina
-// xml - visi tagai kurie atsidare - privalo buti uzdaryti!!!
-//                                        <img></img>
-
-// index.js UZKOMENTINTI 9 ir 11 eilutes  // <React.StrictMode>
-                                          // </React.StrictMode>
-
-
-// react susideda is keliu burtazodziu
-// 1) component'as
-// 2) props'as
-// 3) state
-
-
-//     COMPONENT - tai FUNKCIJA kuri grazina HTML.
-//                  a) Funkcijos (komponento) pavadinimas turi prasidedi didziaja raide.
-//                  b) Viena funkcija - vienas failas. Faila vadinsime taip kaip uzsivadina component.
-
-
-//     PROPS - jeigu komponentas yra funkcija, tai PROPS yra funkcijos argumentas.
-//              a) <Hello spalva='green'/> yra propsas
-
-// stringa galima paversti skaiciumi pidejus + zenkla (nes nera taigiamo stringo)
+// listai: katinai.map((k, i) => <div key={i}>{k}</div>)
+// mygtukas kuri paspaudus atsiranda kvadratukas, antra kart paspaudus atsiranda du kvdr ir t.t.
