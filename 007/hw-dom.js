@@ -310,3 +310,17 @@ console.log(ele3);
 patinka.forEach(n => {
     ulialia.after(ele3, patinka)
 })
+
+
+
+
+const butt = document.querySelector('button');
+console.log(butt);
+const h2 = document.querySelectorAll('h2')
+console.log(h2);
+
+h2.innerHTML = rand(1, 6);
+
+butt.addEventListener('click', () => {
+    console.log(butt);
+})
