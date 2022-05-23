@@ -1,6 +1,9 @@
 
 import { useState } from 'react';
 import './App.css';
+import Bala from './components/011/bala';
+import Daiktas from './components/011/daiktas';
+import Tvenkinys from './components/011/tvenkinys';
 import rand from './Functions/randNumber';
 
 
@@ -210,6 +213,15 @@ console.log(dogsLyginiai);
               })
             }
           </div>
+
+
+{/* 1 uzdavinys */}
+            <Bala/>
+          
+{/* 2 uzdavinys */}
+            <Tvenkinys/>
+            <Daiktas/>
+          
         </header>
       </div>
     </>
