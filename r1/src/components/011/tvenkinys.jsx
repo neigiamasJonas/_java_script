@@ -15,6 +15,7 @@ function Tvenkinys({seaPlaners}) {
             {
                 seaPlaners.map(p => p.id % 2 ? null : <Daiktas key={p.id} seaPlaner={p}></Daiktas> )
             }
+            <br />
         </>
         )
 }
