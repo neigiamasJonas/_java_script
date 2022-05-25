@@ -23,7 +23,7 @@ function Bala() {
                           return (
                               <li key={i} style={{marginTop: "40px"}}>ID: {i+1}
                                   <h3>Type: {v.type}</h3>
-                                    <div>Name: {v.name}</div>
+                                    <div style={{color: v.color}}>Name: {v.name}</div>
                                     <div>Color: {v.color}</div>
                               </li>
                           )

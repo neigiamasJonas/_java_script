@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.scss';
 import Jura from './components/011/3jura';
 import Vandenynas from './components/011/4vandenynas';
+import Pasaulis from './components/011/5pasaulis';
 import Bala from './components/011/bala';
 import Tvenkinys from './components/011/tvenkinys';
 import rand from './Functions/randNumber';
@@ -252,8 +253,13 @@ console.log(dogsLyginiai);
             <Jura treciasUzdavinys={seaPlaners}></Jura>
 
 {/* 4 uzdavinys seaPlaners*/}
-
+            <div style={{marginTop:'40px'}}></div>
             <Vandenynas ketvirtasUzdavinys={seaPlaners}/>
+
+
+{/* 5 uzdavinys seaPlaners*/}
+            <div style={{marginTop:'40px'}}></div>
+            <Pasaulis penktasUzdavinys={seaPlaners}></Pasaulis>
 
         </header>
       </div>
