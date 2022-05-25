@@ -253,9 +253,8 @@ console.log(dogsLyginiai);
 
 {/* 4 uzdavinys seaPlaners*/}
 
-            <Vandenynas ketvirtasUzdavinys1={sortTipas}/>
-            {/* <Vandenynas ketvirtasUzdavinys2={sortVardas}/>
-            <Vandenynas ketvirtasUzdavinys3={sortSpalva}/> */}
+            <Vandenynas ketvirtasUzdavinys={seaPlaners}/>
+
         </header>
       </div>
     </>
