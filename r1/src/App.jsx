@@ -21,7 +21,7 @@ const seaPlaners = [
   {id: 10, type: 'man', name: 'Teta Toma', color: 'yellow'},
 ];
 
-const sortTipas = seaPlaners.sort((a, b) => (a.type > b.type) ? 1 : -1);
+// const sortTipas = seaPlaners.sort((a, b) => (a.type > b.type) ? 1 : -1);
 
 // const sortVardas = seaPlaners.sort((a, b) => (a.name > b.name) ? 1 : -1);
 

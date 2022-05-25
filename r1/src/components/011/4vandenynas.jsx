@@ -8,7 +8,7 @@ function Vandenynas({ketvirtasUzdavinys}) {
         <>
 
         {
-            // ketvirtasUzdavinys1.sort................ tada .map !!!!!!!!!!!!
+            // ketvirtasUzdavinys.sort................ tada .map !!!!!!!!!!!!
            ketvirtasUzdavinys.sort((a, b) => (a.type > b.type) ? 1 : -1).map(s => <Tipas key={s.id} tipas={s}></Tipas>)
         }
         {
