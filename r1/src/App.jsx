@@ -1,99 +1,133 @@
 import './App.scss';
-import './bootstrap.css';
-import './crud.scss';
-import Create from './components/crud/create';
-import { useState, useEffect } from 'react';
-import { create, read, remove } from './Functions/localStorage';
-import List from './components/crud/list';
-import Edit from './components/crud/edit';
+import { useState } from 'react';
+import Comp1 from './components/015-formos/comp1';
+import Katinai from './components/015-formos/comp2';
+import Santykis from './components/015-formos/comp3';
+import Selektas from './components/015-formos/comp4';
+import Range from './components/015-formos/comp5';
+// import { v4 as uuidv4 } from 'uuid';
+// // import rand from './Functions/randNumber';
+// import randColor from './Functions/randColor';
+
+function App() {
+
+    const [text, setText] = useState('');       
+
+    const inputText = e => {        // antras imput variantas onChange
+        setText(e.target.value);
+        console.log(e.target.value);
+    }
+
+//////////////// select //////////////
+
+    const [select, setSelect] = useState('two')
+
+//////////////// checkBox //////////////
+
+    const [cb, setCb] = useState ({a: false, b: false, c: true, d: true})
+
+    const cbClick = c => {
+        setCb(checkBox => ({...checkBox, [c]: !checkBox[c]}));
+    }
+
+//////////////// radioButton //////////////
+
+    const [radio, setRadio] = useState('c')
+
+//////////////// uzdavinys //////////////
+
+    const [inputcolor, setInputcolor] = useState('')
+
+
+  return (
+    <>
+      <div className="App">
+        <header className="App-header">
+        
+        <input type="text" onChange={e => setText(e.target.value)} value={text}></input>
+
+        <input type="text" onChange={inputText} value={text}></input> 
+
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// select ////////////// */}
+
+        <select value={select} onChange={e => setSelect(e.target.value)}>
+            <option value="one">Vienas</option>
+            <option value="two">Du</option>
+            <option value="three">Trys</option>
+            <option value="four">Keturi</option>
+        </select>
+
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// checkBox ////////////// */}
+
+        <fieldset>
+            <legend>Checkbox</legend>
+                A<input type="checkbox" onChange={() => cbClick('a')} checked={cb.a}></input>
+                B<input type="checkbox" onChange={() => cbClick('b')} checked={cb.b}></input>
+                C<input type="checkbox" onChange={() => cbClick('c')} checked={cb.c}></input>
+                D<input type="checkbox" onChange={() => cbClick('d')} checked={cb.d}></input>
+        </fieldset>
+
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// radioButton ////////////// */}
+
+<fieldset>
+            <legend>Radio Buttom</legend>
+                A<input type="radio" name='r' value='a' onChange={e => setRadio(e.target.value)} checked={radio === 'a'}></input>
+                B<input type="radio" name='r' value='b' onChange={e => setRadio(e.target.value)} checked={radio === 'b'}></input>
+                C<input type="radio" name='r' value='c' onChange={e => setRadio(e.target.value)} checked={radio === 'c'}></input>
+                D<input type="radio" name='r' value='d' onChange={e => setRadio(e.target.value)} checked={radio === 'd'}></input>
+        </fieldset>
+
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// uzdavinys ////////////// */}
+        <div className='kv' style={{backgroundColor: inputcolor}}>color</div>
+        {/* <input type="color" onChange={e => setInputcolor(e.target.value)} value={inputcolor === 'color'}></input> */}
+        <input type="color" onChange={e => setInputcolor(e.target.value)} value={inputcolor}></input>
 
 
 
-////////// CRUD - Creat Read Update Delete ////////
 
-
- function App() {
-
-    // last update component (paskutinio localStorage update laikas), kad atsinaujintu ne po refresh
-    const [lastUpdate, setLastUpdate] = useState(Date.now());
-
-    // modalData truksta isikopint
-    const [modalData, setModalData] = useState(null);
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// uzdavinys 1) ////////////// */}
+        <Comp1></Comp1>
 
 
 
-
-
-    const [createData, setCreateData] = useState(null);     // net ir tuscias objektas turi tureti savo ID
-
-    // 1 C-REATE
-    useEffect(() => {
-
-        if(createData === null) {
-            return;
-        }
-
-        // to localStorage // tiesiai is cia i state neirashom // state nuskaito is localStorage
-
-        create(createData);
-
-        setLastUpdate(Date.now());      // last update
-
-    }, [createData])
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// uzdavinys 2) ////////////// */}
+        <Katinai></Katinai>
 
 
 
 
-
-    // ex list state
-    const [exes, setExes] = useState(null)
-
-    // 2 R-EAD
-    useEffect (() => {
-        setExes(read());
-
-    }, [lastUpdate]);                   // last update
-
-    
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// uzdavinys 3) ////////////// */}
+        <Santykis></Santykis>
 
 
-    // 3 D-ELETE
 
-    const [deleteData, setDeleteData] = useState(null);
-
-    useEffect(() => {
-        if (null === deleteData) {
-            return;
-        }
-        remove(deleteData);
-        setLastUpdate(Date.now());
-
-    }, [deleteData]);
-
-    return (
-        <>
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <Create setCreateData={setCreateData}></Create>
-                    </div>
-                    <div className="col-8">
-                        <List exes={exes} setDeleteData={setDeleteData} setModalData={setModalData}></List>
-                    </div>
-                </div>
-            </div>
-            <Edit modalData={modalData} setModalData={setModalData}></Edit>
-        </>
-    );
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// uzdavinys 4) ////////////// */}
+        <Selektas></Selektas>
 
 
+
+        <div style={{marginTop: '30px'}}></div>
+{/* //////////////// uzdavinys 5) ////////////// */}
+        <Range></Range>
+
+        </header>
+      </div>
+
+    </>
+  );
 }
+
 export default App;
 
+// value={text} kontrole, kad value turi buti state
+// onChange={e => setText(e.target.value)}
 
-
-// 1. is create issiuntem dupmenis i createData
-// pasikeitus duomenims, isshaukia useEffect (datos) ir viskas irashoma i lokal storage
-
-//  2. exes state nustatytas ant useEffect, kuris veikia tada, kai pas mus uzsiupdeitina puslapis (parafrechinus puslapi) (readina is read(funkcijos))
-// jis nueina i lokal storage, paima duomenis, irasho i exes, jis pakeicia, perduoda list'ui ir listas ismapina i atskirus ex (ex.map)
+// radio button name vienodi - jie visi susieti. Jeigu pazymi viena, atsizymi kiti
