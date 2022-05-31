@@ -13,4 +13,4 @@ function getId(key) {
     return id;
 }
 
-export default getId
+export default getId;
