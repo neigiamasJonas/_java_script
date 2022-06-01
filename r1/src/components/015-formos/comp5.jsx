@@ -4,28 +4,66 @@ import './comp5.scss';
 
 function Range() {
 
-    const [ilgis, setIlgis] = useState('100')
-    const [plotis, setPlotis] = useState('100');
+    const [aukstis, setAukstis] = useState();
+    console.log(aukstis);
+    const [plotis, setPlotis] = useState();
+
+
+    const [array, setArray] = useState([]);
+    const click = () => {
+        setAukstis(100);
+        setPlotis(100);
+        setInputColor('#777');
+    }
+
+    const [inputColor, setInputColor] = useState('');
+
+
+    // issaugoti viena kvadraciuka
+    const save = () => {
+        const copyArray = [...array]
+        copyArray.push({'Aukstis': aukstis,'Plotis': plotis,'Spalva': inputColor});
+        setArray(copyArray);
+
+        setAukstis();
+        setPlotis();
+        setInputColor();
+
+        localStorage.setItem("pavadinimas", JSON.stringify(copyArray));
+    }
+
+    // norint, kad refreshinus liktu kvadratas, reikia per useEffect parse copyArray
+
+
 
     return (
         <>
         <div style={{margin: '40px 0px'}}>Range, color + kvadratas</div>
         <fieldset className='field'>
-            <label className='label'>Ilgis</label>
-            <input type="range" min='10' max='200' value={ilgis} onChange={e => setIlgis(e.target.value)}></input>
+            <label className='label'>Aukstis px</label>
+            <input type="range" min='10' max='200' value={aukstis} onChange={e => setAukstis(e.target.value)}></input>
 
 
 
-            <label className='label'>Plotis</label>
+            <label className='label'>Plotis px</label>
             <input type="range" min='10' max='200' value={plotis} onChange={e => setPlotis(e.target.value)}></input>
 
 
 
-            <input type='color' className='color'></input>
+            <input type='color' className='color' value={inputColor} onChange={e => setInputColor(e.target.value)}></input>
 
-            <button>Sukurti</button>
-            <button>Issaugoti</button>
+            <button onClick={click}>Sukurti</button>
+            <button onClick={save}>Issaugoti</button>
+
         </fieldset>
+        <div style={{margin: '40px 0px'}}>
+            {
+                array.map((v, i) => <div key={i} className='kv' style={{width: v.Plotis + 'px', height: v.Aukstis + 'px', backgroundColor: v.Spalva}}></div>)
+            }
+            {
+                aukstis && plotis && inputColor && <div className='kv' style={{width: plotis + 'px', height: aukstis + 'px', backgroundColor: inputColor}}></div>
+            }
+        </div>
 
         </>
     )
