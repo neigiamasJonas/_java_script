@@ -66,9 +66,20 @@ console.log(myCat22.name);
 
 /////////////////////////////////////////////////////////////////////////////
 console.log('------------Objektiniai Uzdaviniai--------------');
-console.log('------------ 1 --------------');
+console.log('------------ 1 + 7 --------------');
 
 class Kibiras1 {
+
+
+    static visiAkmenys = 0;
+
+    static akmenuSkaiciusVisuoseKibiruose(){
+        console.log(`Pririnkta viso: ${this.visiAkmenys} akmenų`);
+    }
+
+    static bendrasAkmenuSkaicius(akmenuSkaicius) {
+        this.visiAkmenys += akmenuSkaicius;
+    }
 
     constructor() {
         this.akmenuKiekis = 0;
@@ -77,11 +88,13 @@ class Kibiras1 {
 
     prideti1Akmeni = () => {
         this.akmenuKiekis++;
+        this.constructor.bendrasAkmenuSkaicius(1);
 
     };
 
     pridetiDaugAkmenu(kiekis){
-        this.akmenuKiekis = this.akmenuKiekis + kiekis;
+        this.akmenuKiekis += kiekis;
+        this.constructor.bendrasAkmenuSkaicius(kiekis);
         
     };
 
@@ -95,6 +108,14 @@ const myKibiras = new Kibiras1();
 myKibiras.prideti1Akmeni();
 myKibiras.pridetiDaugAkmenu(12);
 myKibiras.kiekPririnktaAkmenu();
+
+const k2 = new Kibiras1()
+k2.prideti1Akmeni();
+
+const k3 = new Kibiras1()
+k3.pridetiDaugAkmenu(9)
+
+Kibiras1.akmenuSkaiciusVisuoseKibiruose();
 
 //////////////////////////////////////////////////
 
@@ -171,20 +192,39 @@ bapkes.banknotai();
 
 //////////////////////////////////////////////////
 
-console.log('------------ 3 --------------');
+console.log('------------ 3 + 4 --------------');
 
 class Troleibusas {
     
+    static registras = [];
+    
+
+
+    static bendrasKeleiviuSkaicius(keleiviuSkaicius) {
+    }
+
+    static visiKeleiviai(keleiviai){
+        this.registras.push(keleiviai);
+
+    }
+
+
     constructor() {
         this.keleiviuSkaicius = 0;
+        this.constructor.visiKeleiviai(this);
+        
+        
     }
 
     ilipa(kiek){
         this.keleiviuSkaicius = this.keleiviuSkaicius + kiek;
+
+        
     }
 
     islipa(kiek) {
         this.keleiviuSkaicius = this.keleiviuSkaicius - kiek;
+        
     }
 
     vaziuoja() {
@@ -195,18 +235,42 @@ class Troleibusas {
             console.log(`Troleibusu vaziuoja ${this.keleiviuSkaicius} zmoniu`);
         }
     }
+
+    keleiviuSkaiciusVisuoseTroleibusuose(){
+        
+        
+    }
 }
 
-const trulikas = new Troleibusas();
+console.log(Troleibusas.registras);
 
+
+
+
+const trulikas = new Troleibusas();
+const trulikas2 = new Troleibusas();
+const trulikas3 = new Troleibusas();
+
+////////////////////////// pirmas trulikas
 trulikas.ilipa(10);
 trulikas.islipa(6);
 trulikas.islipa(6);
-// trulikas.ilipa(10);
 
 trulikas.vaziuoja();
 
+////////////////////////// antras trulikas
+trulikas2.ilipa(10);
+trulikas2.islipa(6);
+trulikas2.ilipa(6);
 
+trulikas2.vaziuoja();
+
+////////////////////////// antras trulikas
+trulikas3.ilipa(5);
+trulikas3.islipa(6);
+trulikas3.ilipa(8);
+
+trulikas3.vaziuoja();
 
 //////////////////////////////////////////////////
 
@@ -307,6 +371,7 @@ class Stikline {
         this.constructor.visosStiklines(this);
 
     }
+    
 
     ipilti(kiekis){
         this.kiekis = Math.min(this.turis, this.kiekis + kiekis);
@@ -375,3 +440,59 @@ stXl.stiklinejeYra();
 
 const st = Stikline.naujaStikline(300)
 console.log(st);
+
+
+
+
+//////////////////////////////////////////////////
+
+console.log('------------ 9  --------------');
+
+/////////////////////////////////
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+  
+    return Math.floor(Math.random() * (max - min + 1)) + min;   
+}
+
+
+////////////////////////////////
+class Grybas {
+
+    constructor() {
+        this.valgomas = !this.rand(0, 1);
+        this.sukirmijes = !this.rand(0, 1);
+        this.svoris = this.rand(5, 45);
+    }
+
+    rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+}
+
+
+class Krepsys {
+
+
+    constructor() {
+        this.dydis = 500;
+        this.prikrauta = 0;
+    }
+
+    deti(grybas) {
+        if(grybas.valgomas && !grybas.sukirmijes) {
+            this.prikrauta += grybas.svoris;
+        }
+        return this.prikrauta < this.dydis;
+    }
+}
+
+const Kr = new Krepsys();
+
+while(Kr.deti(new Grybas())){}
+
+console.log(Kr);
