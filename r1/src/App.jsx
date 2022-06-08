@@ -1,151 +1,123 @@
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
 import './App.scss';
 import rand from './Functions/randNumber';
-import colorReducer from './reducer/ColorReducer';
-import NumberReducer from './reducer/NumberReducer';
-import kvReducer from './reducer/kv'
+import randListReducer from './reducer/RandNumberList';
 
 
 function App() {
 
-    // const [color, setColor] = useState('yellow');
 
-    // const goPink = () => {
-    //     setColor('pink')
-    // }
+const [list, dispachList] = useReducer(randListReducer, [])
 
+const listGo = () => {
 
-    // REDUCER //
-
-    const [color, dispachColor] = useReducer(colorReducer, 'red');
-
-    const goPink = () => {
-        const action = {
-            type: 'go_pink'
-        }
-
-        dispachColor(action);
-    }
-
-
-    const goRed = () => {
-        const action = {
-            type: 'go_red'
-        }
-
-        dispachColor(action);
-    }
-
-
-    const goChange = () => {
-        const action = {
-            type: 'change_color'
-        }
-
-        dispachColor(action);
-    }
-
-
-    //////////////////////////////
-
-    const [number, dispachNumber] = useReducer (NumberReducer, '0000')
-
-    const randNr = () => {
-        const action = {
-            type: 'change_number'
-        }
-
-        dispachNumber(action);
-    }
-
-    //////////////////////////////
+    const action = {
+        type: 'listas'
     
-
-    const randNr2 = () => {
-        const action = {
-            type: 'change_number2',
-            payload: rand(0, 1000)
-
-        }
-
-        dispachNumber(action);
     }
 
-    //////////////////////////////
+    dispachList(action)
+}
 
-    const [bgColor, setBgColor] = useState()
+const sortList = () => {
 
-    const clr1 = () => {
-        const action = {
-            type: 'change_background',
-            payload: bgColor
-
-        }
-
-        dispachColor(action)
+    const action = {
+        type: 'sort'
     }
 
-    //////////////////////////////
+    dispachList(action);
+}
 
-    const [text, setText] = useState('');
-    const [textDiv, setTextDiv] = useState('')
+const filterHigh = () => {
 
-    const tekstas = () => {
-        setTextDiv(text)        // i viena funkcija galima net tik reducint bet ir paleist kitus state
-
-        const action = {
-            type: 'nr_to_text',
-            payload: text
-        }
-
-        dispachNumber(action)
+    const action = {
+        type: 'filterH'
     }
+    dispachList(action);
+}
 
-    //////////////////////////////
+const filterLow = () => {
 
-    const [kv, dispachKv] = useReducer(kvReducer, [])
+    const action = {
+        type: 'filterL'
+    }
+    dispachList(action);
+}
 
-    const kv1 = () => {
+const filterReset = () => {
+
+    const action = {
+        type: 'filterReset'
+    }
+    dispachList(action);
+}
+
+const sortReset = () => {
+
+    const action = {
+        type: 'sortReset'
+    }
+    dispachList(action);
+}
+
+const addNumber = () => {
+
+    const action = {
+        type: 'addNumber'
         
-        const action = {
-            type: 'kvkv',
-        }
-
-        dispachKv(action)
     }
+    dispachList(action);
+}
+
+
+const delKv = (n) => {
+
+    const action = {
+        type: 'delKv',
+        payload: n
+        
+    }
+    dispachList(action);
+}
 
 
   return (
 
     <div className="App" >
         <header className="App-header">
-            <h3 style={{backgroundColor: color}}>REDUCER
-                <span> {number} </span>
-            </h3>
-            <button onClick={goPink}>Go Pink</button>
-            <button onClick={goRed}>Go Red</button>
-            <button onClick={goChange}>Change Color</button>
+            <h3>Reducer++</h3>
+            <div style={{marginBottom: '20px'}}>UZDAVINIAI</div>
 
-            <button onClick={randNr}>Rand number</button>
-            <button onClick={randNr2}>Rand number2</button>
-
-            <input type="color" value={bgColor} onChange={e => setBgColor(e.target.value)}></input>
-            <button onClick={clr1}>Change Background</button>
-
-            <button onClick={tekstas}>Input text</button>
-            <input type="text" value={text} onChange={e => setText(e.target.value)}></input>
-            <div> {textDiv} </div>
-
-            <button style={{marginTop: '25px'}} onClick={kv1}>Kvadratas</button>
+            <div style={{marginBottom: '20px'}}>1+</div>
+            <button onClick={listGo}>Ganerate 10 rand</button>
+            <div style={{marginBottom: '10px'}}></div>
+            <button onClick={addNumber}>Add number</button>
             <div className='kvc'>
-                    {
-                        kv.map(a => <div className='kv'>{a}</div>)
-                    }
+                {
+                    list.map((v, i) => v.show ? <div key={i} style={{margin: "20px", backgroundColor: v.color}} className={'kv'} onClick={() => delKv(v.number)}>{v.number} </div> : null)
+                }
             </div>
+            <button onClick={sortList}>Sort list</button>
+            <button onClick={sortReset}>Sort reset</button>
+            <div style={{marginBottom: '20px'}}></div>
+
+            <button onClick={filterHigh}>didesni nei 5000</button>
+            <button onClick={filterLow}>maziau nei 4000</button>
+            <button onClick={filterReset}>Filter Reset</button>
         </header>
+        
+
     </div>
     
   )
 }
 
 export default App;
+
+///// UZDUOTIS /////
+
+// paspaudus kvadratuka jis dingsta, paspaudus reset Filter vel atsiranda
+
+//  padaryti input laukeli i kuri irasius kvadratuko skaiciu ir paspaudus dar viena sukurta mygtuka, kvadratukas su tuo skaicium isnyksta
+
+// padaryti gyva filtracija. Prideti input (type:range) nuo 0 iki 9999. Slankiojant range turi iskarto filtruotis kvadratukai.
