@@ -1,6 +1,6 @@
-import { useReducer } from 'react';
+import { useReducer, useState, useEffect, useRef } from 'react';
 import './App.scss';
-import rand from './Functions/randNumber';
+// import rand from './Functions/randNumber';
 import randListReducer from './reducer/RandNumberList';
 
 
@@ -80,6 +80,44 @@ const delKv = (n) => {
     dispachList(action);
 }
 
+/////////
+
+const [inNr, setInNr] = useState('')
+
+const handleDelete = () => {
+    const action = {
+        type: 'delKv',
+        payload: inNr
+        
+    }
+
+    setInNr('')
+    dispachList(action);
+}
+
+/////////////////
+
+const [range, setRange] = useState(0);
+const timeOut = useRef(true);
+
+useEffect(() => {
+
+    if(!timeOut.current) {      // setinam timeout
+        return;
+    }
+    timeOut.current = false;
+    setTimeout(() => timeOut.current = true, 100)
+
+    const action = {
+        type: 'range',
+        payload: Number(range)
+        
+    }
+
+    dispachList(action);
+
+}, [range])
+
 
   return (
 
@@ -90,8 +128,19 @@ const delKv = (n) => {
 
             <div style={{marginBottom: '20px'}}>1+</div>
             <button onClick={listGo}>Ganerate 10 rand</button>
+
             <div style={{marginBottom: '10px'}}></div>
             <button onClick={addNumber}>Add number</button>
+
+            <div style={{marginBottom: '20px'}}></div>
+            <input type='text' value={inNr} onChange={e => setInNr(e.target.value)}></input>
+            <button type='button' onClick={handleDelete}>Delete KV</button>
+
+            <div style={{marginBottom: '20px'}}></div>
+            <h3>{range}</h3>
+            <input type="range" min='0' max='9999' value={range} onChange={e => setRange(e.target.value)}></input>
+
+            <div style={{marginBottom: '20px'}}></div>
             <div className='kvc'>
                 {
                     list.map((v, i) => v.show ? <div key={i} style={{margin: "20px", backgroundColor: v.color}} className={'kv'} onClick={() => delKv(v.number)}>{v.number} </div> : null)

@@ -73,15 +73,23 @@ function randListReducer(state, action) {
     ////
         case 'delKv':
             // newState = state.filter(v => v.number !== action.payload)
-            newState = state.map(v => {
-                if(v.number === action.payload){
-                    v.show = false
-                }
-            return v})
-            
+            // newState = state.map(v => {
+            //     if(v.number === action.payload){
+            //         v.show = false
+            //     }
+            // return v})
+
+            newState = state.map(v => v.number === action.payload ? {...v, show: false} : {...v});
             
 
             break;
+    ////
+        case 'range':
+            newState = state.map(v => v.number > action.payload ? {...v, show: true} : {...v, show: false})
+
+            break;
+
+
         default:
             newState = [...state];
     }
