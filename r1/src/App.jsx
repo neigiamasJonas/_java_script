@@ -1,158 +1,79 @@
-import { useReducer, useState, useEffect, useRef } from 'react';
+
+import axios from 'axios';
+import { useState, useEffect, useReducer } from 'react';
 import './App.scss';
-// import rand from './Functions/randNumber';
-import randListReducer from './reducer/RandNumberList';
+import booksReducer from './reducer/BooksReducer';
+
 
 
 function App() {
 
-
-const [list, dispachList] = useReducer(randListReducer, [])
-
-const listGo = () => {
-
-    const action = {
-        type: 'listas'
-    
-    }
-
-    dispachList(action)
-}
-
-const sortList = () => {
-
-    const action = {
-        type: 'sort'
-    }
-
-    dispachList(action);
-}
-
-const filterHigh = () => {
-
-    const action = {
-        type: 'filterH'
-    }
-    dispachList(action);
-}
-
-const filterLow = () => {
-
-    const action = {
-        type: 'filterL'
-    }
-    dispachList(action);
-}
-
-const filterReset = () => {
-
-    const action = {
-        type: 'filterReset'
-    }
-    dispachList(action);
-}
-
-const sortReset = () => {
-
-    const action = {
-        type: 'sortReset'
-    }
-    dispachList(action);
-}
-
-const addNumber = () => {
-
-    const action = {
-        type: 'addNumber'
-        
-    }
-    dispachList(action);
-}
-
-
-const delKv = (n) => {
-
-    const action = {
-        type: 'delKv',
-        payload: n
-        
-    }
-    dispachList(action);
-}
-
-/////////
-
-const [inNr, setInNr] = useState('')
-
-const handleDelete = () => {
-    const action = {
-        type: 'delKv',
-        payload: inNr
-        
-    }
-
-    setInNr('')
-    dispachList(action);
-}
-
-/////////////////
-
-const [range, setRange] = useState(0);
-const timeOut = useRef(true);
+const [books, setBooks] = useState([]);
 
 useEffect(() => {
+    axios.get('http://in3.dev/knygos/')
+    .then(res => {
+        setBooks(res.data)
+    })
+}, []);
 
-    if(!timeOut.current) {      // setinam timeout
-        return;
-    }
-    timeOut.current = false;
-    setTimeout(() => timeOut.current = true, 100)
+////////////////////
+
+const [bookList, dispachbookList] = useReducer(booksReducer, []);
+
+useEffect(() => {
+    axios.get('http://in3.dev/knygos/')
+    .then(res => {
+
+        const action = {
+            payload: res.data,
+            type:'get_from_server'
+        }
+        dispachbookList(action)
+    })
+}, []);
+
+const sortBooks = () => {
 
     const action = {
-        type: 'range',
-        payload: Number(range)
+        type:'sortBooks',
         
     }
+    dispachbookList(action)
+}
 
-    dispachList(action);
+const unsortBooks = () => {
 
-}, [range])
+    const action = {
+        type:'unsortBooks',
+        
+    }
+    dispachbookList(action)
+}
 
 
   return (
 
     <div className="App" >
         <header className="App-header">
-            <h3>Reducer++</h3>
-            <div style={{marginBottom: '20px'}}>UZDAVINIAI</div>
-
-            <div style={{marginBottom: '20px'}}>1+</div>
-            <button onClick={listGo}>Ganerate 10 rand</button>
-
-            <div style={{marginBottom: '10px'}}></div>
-            <button onClick={addNumber}>Add number</button>
-
-            <div style={{marginBottom: '20px'}}></div>
-            <input type='text' value={inNr} onChange={e => setInNr(e.target.value)}></input>
-            <button type='button' onClick={handleDelete}>Delete KV</button>
-
-            <div style={{marginBottom: '20px'}}></div>
-            <h3>{range}</h3>
-            <input type="range" min='0' max='9999' value={range} onChange={e => setRange(e.target.value)}></input>
-
-            <div style={{marginBottom: '20px'}}></div>
-            <div className='kvc'>
+            <h3>Reducer+++</h3>
+            <div>
                 {
-                    list.map((v, i) => v.show ? <div key={i} style={{margin: "20px", backgroundColor: v.color}} className={'kv'} onClick={() => delKv(v.number)}>{v.number} </div> : null)
+                    books.length ? books.map(b => <div key={b.id}>{b.title}</div>) : <h2>Loading...</h2>
                 }
             </div>
-            <button onClick={sortList}>Sort list</button>
-            <button onClick={sortReset}>Sort reset</button>
-            <div style={{marginBottom: '20px'}}></div>
+            <div style={{marginBottom: "50px"}}></div>
+            <div>
+                {
+                    bookList.length ? bookList.map(b => <div key={b.id}>{b.title} {b.price} EUR</div>) : <h2>Loading...</h2>
+                }
+            </div>
+            <div style={{marginBottom: "50px"}}></div>
+            <button onClick={sortBooks}>Sort by Title</button>
+            <div style={{marginBottom: "50px"}}></div>
+            <button onClick={unsortBooks}>Unsort</button>
 
-            <button onClick={filterHigh}>didesni nei 5000</button>
-            <button onClick={filterLow}>maziau nei 4000</button>
-            <button onClick={filterReset}>Filter Reset</button>
+
         </header>
         
 
@@ -163,10 +84,7 @@ useEffect(() => {
 
 export default App;
 
-///// UZDUOTIS /////
 
-// paspaudus kvadratuka jis dingsta, paspaudus reset Filter vel atsiranda
-
-//  padaryti input laukeli i kuri irasius kvadratuko skaiciu ir paspaudus dar viena sukurta mygtuka, kvadratukas su tuo skaicium isnyksta
-
-// padaryti gyva filtracija. Prideti input (type:range) nuo 0 iki 9999. Slankiojant range turi iskarto filtruotis kvadratukai.
+// rodyti brangesnes nei 13 eu knyga + reset
+// knygu reload mygtukas (isnaujo atsiuncia knygas is serverio) useEffect naudot + useState
+// salia knygos atspausdinti jos kategorija (nauja reduceri ir effecta naudot, nes type yra nr, o nr reprezentuotas kitoj bazej)
