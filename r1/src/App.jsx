@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect, useReducer } from 'react';
 import './App.scss';
 import booksReducer from './reducer/BooksReducer';
+import typeReducer from './reducer/BookTypeReducer';
 
 
 
@@ -20,6 +21,7 @@ useEffect(() => {
 ////////////////////
 
 const [bookList, dispachbookList] = useReducer(booksReducer, []);
+const [typeList, dispachTypeList] = useReducer(typeReducer, []);
 
 useEffect(() => {
     axios.get('http://in3.dev/knygos/')
@@ -30,6 +32,16 @@ useEffect(() => {
             type:'get_from_server'
         }
         dispachbookList(action)
+    })
+
+    axios.get('https://in3.dev/knygos/types/')
+    .then(res => {
+
+        const action = {
+            type: 'get-type-from-server',
+            payload: res.data
+        }
+        dispachTypeList(action)
     })
 }, []);
 
@@ -51,6 +63,23 @@ const unsortBooks = () => {
     dispachbookList(action)
 }
 
+const price13 = () => {
+
+    const action = {
+        type: 'price13'
+    }
+    dispachbookList(action)
+}
+
+
+const priceUnsort = () => {
+
+    const action = {
+        type: 'unsortPrice'
+    }
+
+    dispachbookList(action)
+}
 
   return (
 
@@ -65,13 +94,23 @@ const unsortBooks = () => {
             <div style={{marginBottom: "50px"}}></div>
             <div>
                 {
-                    bookList.length ? bookList.map(b => <div key={b.id}>{b.title} {b.price} EUR</div>) : <h2>Loading...</h2>
+                   bookList.length ? bookList.map(b => b.show ? <div key={b.id}>{b.title} {b.price} EUR
+                   {
+                    typeList.map(t => b.id === t.id ? <div style={{marginLeft: '30px', marginBottom: '20px'}} key={t.id}>Tipas: {t.title}</div> : null)
+                   }
+                   
+                   </div> : null) : <h2>Loading...</h2>
                 }
             </div>
             <div style={{marginBottom: "50px"}}></div>
             <button onClick={sortBooks}>Sort by Title</button>
             <div style={{marginBottom: "50px"}}></div>
             <button onClick={unsortBooks}>Unsort</button>
+            <div style={{marginBottom: "50px"}}></div>
+            <button onClick={price13}>Price bigger than 13eu</button>
+            <div style={{marginBottom: "50px"}}></div>
+            <button onClick={priceUnsort}>Unsort prices</button>
+            <div style={{marginBottom: "50px"}}></div>
 
 
         </header>

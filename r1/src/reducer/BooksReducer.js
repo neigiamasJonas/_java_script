@@ -6,7 +6,7 @@ function booksReducer(state, action) {
     switch(action.type){
 
         case 'get_from_server':
-        newState = action.payload.map((b, i) => ({ ...b, row: i }));
+        newState = action.payload.map((b, i) => ({ ...b, row: i, show: true }));
 
         break;
         ////
@@ -25,7 +25,20 @@ function booksReducer(state, action) {
             newState = [...state].sort((a, b) => (a.row - b.row))
             
         break;
+        ////
+        case 'price13':
+            newState = [...state].map((a => a.price > 13 ? {...a, show: true} : {...a, show: false}))
+
              
+        break;
+        ////
+        case 'unsortPrice':
+            newState = [...state].map((a => ({...a, show: true})))
+
+             
+        break;
+
+
         default:
             newState = [...state]
     }

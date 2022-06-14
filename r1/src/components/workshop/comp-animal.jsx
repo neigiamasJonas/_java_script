@@ -2,7 +2,7 @@ import randColor from "../../Functions/randColor";
 
 function Animal({ name, img }) {
   return (
-    <>
+    <> 
       <div
         style={{
           display: "flex",
