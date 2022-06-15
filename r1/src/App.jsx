@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useEffect } from "react";
 import { useReducer } from "react";
 import "./App.scss";
 import ld from "./reducer/ld";
@@ -17,9 +18,17 @@ const masyvas = [
 
 function App() {
 
-    const [list, dispatchList] = useReducer(ld, masyvas);
+    const [list, dispachList] = useReducer(ld, masyvas);
 
-    const [select, setSelect] = useState('1')
+    const [select, setSelect] = useState("bid_dsc");
+
+    useEffect(() => {
+
+        dispachList({type: select})
+
+    }, [select])
+
+
 
   return (
     <div className="App">
@@ -30,6 +39,7 @@ function App() {
         <option value="bid_asc">Bid ASC</option>
         <option value="bid_dsc">Bid DSC</option>
         <option value="name_asc">Name ASC</option>
+        <option value="name_asc_local">Name ASC (LOCAL)</option>
         <option value="name_dsc">Name DSC</option>
         <option value="random">RAND</option>
       </select>
