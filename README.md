@@ -52,3 +52,8 @@ app.get("/medukai", (req, res) => {
   });
 
 ///////////////////////////////////
+
+
+
+
+11. PALEIDZIANT HTMLE instaliuoti - npm install react-router-dom@6
