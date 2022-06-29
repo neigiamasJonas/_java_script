@@ -79,3 +79,33 @@ app.get("/medukai", (req, res) => {
 
 
 11. PALEIDZIANT HTMLE instaliuoti - npm install react-router-dom@6
+
+i app irasashyti:
+
+
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+import Back from "./Back"
+import Front from "./Front"
+
+
+
+function App() {
+
+    return (
+        <BrowserRouter>
+
+            <Routes>
+                <Route path="/" element={<Front></Front>}></Route>
+                <Route path="/admin" element={<Back></Back>}></Route>
+            </Routes>
+            
+        </BrowserRouter>
+    )
+}
+
+export default App;
+
